@@ -7,10 +7,11 @@ sorts) for mathematics and algorithmic design.
 ## Repository Structure
 Each problem lives in its own self-contained directory under `/problems/some_problem_number`. Each problem directory may
 include: 
-    - `solution.__` -> Final executable solution(s) written in one or more languages. 
-    - `writeup.pdf/tex` -> A LaTeX-based mathematical exploration 
-    - `notes.md`    -> Scratch notes or alternative approaches 
-    - `README.md`   -> Summary or special instructions
+
+- `solution.__` -> Final executable solution(s) written in one or more languages. 
+- `writeup.pdf/tex` -> A LaTeX-based mathematical exploration 
+- `notes.md`    -> Scratch notes or alternative approaches 
+- `README.md`   -> Summary or special instructions
 
 ## Installation 
 This project uses [`uv`](https://github.com/astral-sh/uv) for environment / package management. Installing dependencies
