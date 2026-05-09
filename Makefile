@@ -7,6 +7,7 @@ install:
 # Run linting
 lint:
 	uv run ruff check .
+	uv run codespell . 
 
 # Auto-format code
 format:

@@ -1,7 +1,7 @@
 [project]
 name = "euler"
 version = "0.1.0"
-description = "Add your description here"
+description = "Holds solutions for Project Euler problems"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
@@ -20,14 +20,19 @@ target-version = 'py312'
 line-length = 120
 
 lint.select = [
-    "E",    # pycodestyle errors
-    "F",    # pyflakes
-    "I",    # import sorting
-    "B",    # bugbear (common bugs / anti-patterns)
-    "UP",   # pyupgrade (modern Python syntax)
-    "SIM",  # simplify code patterns
-    "C4",   # better comprehensions
-    "D",    # docstrings
+    "E",    # Pycodestyle errors
+    "F",    # Pyflakes
+    "I",    # Import sorting
+    "B",    # Bugbear (common bugs / anti-patterns)
+    "UP",   # Pyupgrade (modern Python syntax)
+    "SIM",  # Simplify code patterns
+    "C4",   # Better comprehensions
+    "D",    # Docstrings
+]
+
+lint.ignore = [
+    "D212",  # No blank line before docstring
+    "D415"  # First line should end with punctuation
 ]
 
 [tool.ruff.lint.pydocstyle]
