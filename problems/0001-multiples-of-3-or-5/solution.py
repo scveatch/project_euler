@@ -56,9 +56,7 @@ def closed_form(n: int) -> int:
         (int): The sum of multiples `3` and `5` up to the provided `n`.
     """
     # Subtract out the common multiple of `3` and `5` (`15`)
-    return (
-        sum_nat_nums(n - 1, 3) + sum_nat_nums(n - 1, 5) - sum_nat_nums(n - 1, 15)  
-    )
+    return sum_nat_nums(n - 1, 3) + sum_nat_nums(n - 1, 5) - sum_nat_nums(n - 1, 15)
 
 
 if __name__ == "__main__":
