@@ -56,11 +56,12 @@ def bad_largest_prime(n: int) -> int:
             n //= p
     return largest
 
+
 def largest_prime(n: int) -> int:
     """
-    Returns the largest prime factor of `n`. 
+    Returns the largest prime factor of `n`.
 
-    Perform trial division to iteratively remove prime numbers 
+    Perform trial division to iteratively remove prime numbers
     from `n`, starting with small primes and moving upwards.
 
     Args:
