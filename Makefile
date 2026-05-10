@@ -1,4 +1,4 @@
-.PHONY: install lint format typecheck all clean
+.PHONY: install lint format typecheck all new clean
 
 # Install environment
 install:
@@ -19,6 +19,10 @@ typecheck:
 
 # Run everything (useful for pre-commit sanity)
 all: format lint typecheck 
+
+# Make new problem directory
+new: 
+	./scripts/new_problem.sh $(NUM) $(TITLE)
 
 # Clean caches
 clean:
