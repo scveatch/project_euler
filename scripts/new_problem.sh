@@ -26,6 +26,26 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 dir="${ROOT_DIR}/problems/${padded}-${slug}"
 
 mkdir -p "$dir"
-cd "$dir"
+
+solution_file="${dir}/${padded}_solution.py"
+
+cat > "$solution_file" <<EOF
+"""
+File: ${padded}_solution.py
+
+Description: Project Euler Problem ${problem_number}: ${title}
+
+Author: Spencer Veatch (sveatch@willamette.edu)
+
+Last Modified: YYYY-MM-DD
+"""
+
+def main() -> None:
+    pass
+
+
+if __name__ == "__main__":
+    main()
+EOF
 
 echo "Created $dir"
