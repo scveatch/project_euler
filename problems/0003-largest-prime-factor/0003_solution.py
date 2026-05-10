@@ -35,7 +35,7 @@ def sieve_eratosthenes(limit: int) -> list[int]:
     return [i for i, prime in enumerate(is_prime) if prime]
 
 
-def largest_prime(n: int) -> int:
+def bad_largest_prime(n: int) -> int:
     """
     Return the largest prime factor of `n`.
 
@@ -56,6 +56,34 @@ def largest_prime(n: int) -> int:
             n //= p
     return largest
 
+def largest_prime(n: int) -> int:
+    """
+    Returns the largest prime factor of `n`. 
+
+    Perform trial division to iteratively remove prime numbers 
+    from `n`, starting with small primes and moving upwards.
+
+    Args:
+        n (int): A positive value to factor.
+
+    Returns:
+        (int): The largest prime factor of `n`.
+    """
+    largest = 1
+
+    while n % 2 == 0:
+        largest = 2
+        n //= 2
+
+    f = 3
+    while f * f <= n:
+        while n % f == 0:
+            largest = f
+            n //= f
+        f += 2
+
+    return max(largest, n)
+
 
 if __name__ == "__main__":
-    print(largest_prime(60))
+    print(largest_prime(600851475143))
