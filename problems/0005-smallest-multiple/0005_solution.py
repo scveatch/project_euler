@@ -8,8 +8,8 @@ Author: Spencer Veatch (sveatch@willamette.edu)
 Last Modified: 05/09/2026
 """
 
-import math
 import functools
+import math
 
 
 def least_common_mult(first: int, second: int) -> int:
