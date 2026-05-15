@@ -15,6 +15,17 @@ dev = [
     "codespell"
 ]
 
+# Ensure libary is installable
+[tool.uv]
+package = true
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# Lint / Format configuration
 [tool.ruff]
 target-version = 'py312'
 line-length = 120
@@ -32,7 +43,8 @@ lint.select = [
 
 lint.ignore = [
     "D212",  # No blank line before docstring
-    "D415"  # First line should end with punctuation
+    "D415",  # First line should end with punctuation
+    "D205"   # Blank line after summary docstring
 ]
 
 [tool.ruff.lint.pydocstyle]
