@@ -40,19 +40,19 @@ def upper_bound_prime(n: int) -> int:
     Estimates an upper bound estimate for the nth prime.
 
     Uses the Prime Number Theorem, which estimates that the prime number
-    counting theorem `pi(n) ~ x/log(x)`. 
+    counting theorem `pi(n) ~ x/log(x)`.
 
-    A known asymptotic inversion gives: 
+    A known asymptotic inversion gives:
         p_n <= n (log n + log log n) for sufficiently large n
-    This implementation uses that bound with a safety check for small 
+    This implementation uses that bound with a safety check for small
     values of `n`.
 
     Args:
-        n (int): Index of the prime (1-indexed). `n = 1` returns an estimate 
+        n (int): Index of the prime (1-indexed). `n = 1` returns an estimate
         for the first prime `2`.
 
     Returns:
-        (int): A value which is guaranteed (for sufficiently large `n`) to be 
+        (int): A value which is guaranteed (for sufficiently large `n`) to be
         >= the nth prime.
     """
     if n <= 6:
