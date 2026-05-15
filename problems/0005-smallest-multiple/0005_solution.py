@@ -7,10 +7,12 @@ Author: Spencer Veatch (sveatch@willamette.edu)
 
 Last Modified: 05/09/2026
 """
+
 import math
 import functools
 
-def least_common_mult(first: int, second: int) -> int: 
+
+def least_common_mult(first: int, second: int) -> int:
     """
     Constructs the least common multiple of two values `first` and `second`.
 
@@ -23,7 +25,8 @@ def least_common_mult(first: int, second: int) -> int:
     """
     return abs(first * second) // math.gcd(first, second)
 
-def smallest_multiple(limit: int) -> int: 
+
+def smallest_multiple(limit: int) -> int:
     """
     Gets the smallest multiple up to the provided `limit` (inclusive).
 
@@ -34,6 +37,7 @@ def smallest_multiple(limit: int) -> int:
         (int): The smallest multiple of all values up to and including `limit`.
     """
     return functools.reduce(least_common_mult, range(1, limit + 1))
+
 
 if __name__ == "__main__":
     print(smallest_multiple(20))
