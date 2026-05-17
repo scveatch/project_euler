@@ -1,0 +1,118 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Define Article %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Using Packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{empheq}
+\usepackage{mdframed}
+\usepackage{booktabs}
+\usepackage{lipsum}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{psfrag}
+\usepackage{pgfplots}
+\usepackage{bm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Other Settings
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Page Setting %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\geometry{a4paper}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Define some useful colors %%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{ocre}{RGB}{243,102,25}
+\definecolor{mygray}{RGB}{243,243,244}
+\definecolor{deepGreen}{RGB}{26,111,0}
+\definecolor{shallowGreen}{RGB}{235,255,255}
+\definecolor{deepBlue}{RGB}{61,124,222}
+\definecolor{shallowBlue}{RGB}{235,249,255}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Define an orangebox command %%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\orangebox[1]{\fcolorbox{ocre}{mygray}{\hspace{1em}#1\hspace{1em}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% English Environments %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheoremstyle{mytheoremstyle}{3pt}{3pt}{\normalfont}{0cm}{\rmfamily\bfseries}{}{1em}{{\color{black}\thmname{#1}~\thmnumber{#2}}\thmnote{\,--\,#3}}
+\newtheoremstyle{myproblemstyle}{3pt}{3pt}{\normalfont}{0cm}{\rmfamily\bfseries}{}{1em}{{\color{black}\thmname{#1}~\thmnumber{#2}}\thmnote{\,--\,#3}}
+\theoremstyle{mytheoremstyle}
+\newmdtheoremenv[linewidth=1pt,backgroundcolor=shallowGreen,linecolor=deepGreen,leftmargin=0pt,innerleftmargin=20pt,innerrightmargin=20pt,]{theorem}{Theorem}[section]
+\theoremstyle{mytheoremstyle}
+\newmdtheoremenv[linewidth=1pt,backgroundcolor=shallowBlue,linecolor=deepBlue,leftmargin=0pt,innerleftmargin=20pt,innerrightmargin=20pt,]{definition}{Definition}[section]
+\theoremstyle{myproblemstyle}
+\newmdtheoremenv[linecolor=black,leftmargin=0pt,innerleftmargin=10pt,innerrightmargin=10pt,]{problem}{Problem}[section]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Plotting Settings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepgfplotslibrary{colorbrewer}
+\pgfplotsset{width=8cm,compat=1.9}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Title & Author %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Pythagorean Triplet}
+\author{Spencer Veatch}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+    \maketitle
+    \begin{problem}[Special Pythagorean Triplet]
+
+       A Pythagorean Triplet is a set of three natural numbers \( a < b < c  \), for which: \[
+        a^2 + b^2 = c^2
+       \] 
+       For example, \( 3^2 + 4^2 = 9 + 16 = 25 = 5^2 \). There exists exactly one Pythagorean Triplet for which \( a + b
+       + c = 1000 \). Find the product \( abc \).
+    \end{problem}
+    \subsection{Reducing The Search Space}\label{sub:Reducing The Search Space} % (fold)
+    
+    Since this problem gives both a sum constraint and a Pythagorean constraint, we can reduce the search space
+    algebraically. Formally, the problem asks us to find the Pythagorean Triplet \( (a,b,c) \) satisfying the system: 
+    \[
+        \begin{align}
+            a^2 + b^2 &= c^2 \\ 
+            a + b + c &= 1000 
+        \end{align}
+    \] 
+    Given the ordering constraint \( a < b < c \). Using the sum constraint, we can solve for \( c \): \[
+        c = 1000 - a - b
+    \]
+    which can be substituted into the Pythagorean Equation as \[
+        \begin{align*}
+            a^2 + b^2 &= (1000 - a -b)^2 \\
+            a^2 + b^2 &= (1000000 + a^2 + b^2 -2000a - 2000b + 2ab) \\
+            0 &= 1000000 - 2000a - 2000b + 2ab \\
+            0 &= 500000 - 1000a - 1000b + ab \\
+        \end{align*}
+    \] 
+    This representation can be rearranged and factored with respect to \( b \) as: 
+    \[
+        \begin{align}
+            ab - 1000a - 1000b &= -500000 \\
+            b(a - 1000) &= 1000a - 500000 \\
+            b&=  \frac{1000a - 500000}{(a - 1000)} \\
+        \end{align}
+    \] 
+    Thus, for each admissible value of \( a \), the corresponding value of \( b \) can be uniquely determined.
+    % subsection Reducing The Search Space (end)
+    \subsection{Bounding the Domain}\label{sub:Bounding the Domain} % (fold)
+    Given the inequality \[
+        a < b < c
+    \] 
+    and the knowledge that \( a + b + c = 1000 \), it follows that: \[
+        \begin{align}
+            3a &< 1000 \\ 
+            a &< \frac{1000}{3} \\
+        \end{align}
+    \] 
+    Ergo, the search is reduced to the finite interval: \[
+        [1 \le a \le 333].
+    \] 
+    The algorithmic solution must simply iterate over all possible values of \( a \), computing the corresponding values
+    of \( b \) and \( c \), the verifying whether \( a^2 + b^2 = c^2 \) holds.
+    % subsection Bounding the Domain (end)
+\end{document}
